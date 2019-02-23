@@ -48,16 +48,7 @@ class Follower
   end
 
   def self.most_active
-    tally ={}
-
-    self.all.each do |follower|
-      tally[follower] = follower.cults.count
-    end
-    tally.each do |key, val|
-      if val == tally.values.max
-       return key
-      end
-    end
+    self.all.max_by {|follower| follower.cults.count}
   end
 
   def self.top_ten
@@ -68,11 +59,10 @@ class Follower
     end
 
     max_list = tally.max_by(10) {|k, v| v}
-    
+
     max_list.map do |follower|
       follower[0].name
     end
-
   end
 
 end

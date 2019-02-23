@@ -44,17 +44,8 @@ class Cult
     end
 
     def self.least_popular
-      tally = {}
-
-      self.all.each do |cult|
-        tally[cult] = cult.cult_population
-      end
-
-      tally.each do |key, val|
-        if val == tally.values.min
-          return key.name
-        end
-      end
+      least = self.all.min_by {|cult| cult.cult_population}
+      least.name
     end
 
     def self.most_common_location
