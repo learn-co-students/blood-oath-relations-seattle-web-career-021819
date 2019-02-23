@@ -62,7 +62,6 @@ class Follower
 
   def self.top_ten
     tally ={}
-    top_ten = []
 
     self.all.each do |follower|
       tally[follower] = follower.cults.count
