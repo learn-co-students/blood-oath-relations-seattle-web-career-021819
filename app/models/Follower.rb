@@ -18,18 +18,33 @@ class Follower
     list.map {|name| name.cult}
   end
 
-  def self.of_a_certain_age(age)
-    self.all.select {|follower| follower.age >= age}
-  end
-
   def join_cult(cult)
-    BloodOath.new(cult, self)
+    if self.age >= cult.minimum_age
+      BloodOath.new(cult, self)
+    else
+      "SORRY CHARLIE!"
+    end
   end
 
   def my_cults_slogans
     self.cults.each do |cult|
       puts cult.slogan
     end
+  end
+
+  def fellow_cult_members
+    fellows = []
+    cults.each do |cult|
+      cult.followers.each do |follower|
+        fellows << follower.name if follower != self
+      end
+    end
+
+    fellows.uniq
+  end
+
+  def self.of_a_certain_age(age)
+    self.all.select {|follower| follower.age >= age}
   end
 
   def self.most_active

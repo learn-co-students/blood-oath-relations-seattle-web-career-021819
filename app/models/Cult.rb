@@ -1,12 +1,13 @@
 class Cult
-  attr_accessor :name, :location, :founding_year, :slogan
+  attr_accessor :name, :location, :founding_year, :slogan, :minimum_age
   @@all = []
 
-    def initialize(name, location, founding_year, slogan)
+    def initialize(name, location, founding_year, slogan, minimum_age=26)
       @name = name
       @location = location
       @founding_year = founding_year
       @slogan = slogan
+      @minimum_age = minimum_age
       @@all << self
     end
 
@@ -20,7 +21,11 @@ class Cult
     end
 
     def recruit_follower(follower)
-      BloodOath.new(self, follower)
+      if follower.age >= @minimum_age
+        BloodOath.new(self, follower)
+      else
+        "Sorry, too young!"
+      end
     end
 
     def average_age
@@ -40,8 +45,9 @@ class Cult
 
     def self.least_popular
       tally = {}
+
       self.all.each do |cult|
-        tally[cult] ||= cult.cult_population
+        tally[cult] = cult.cult_population
       end
 
       tally.each do |key, val|
