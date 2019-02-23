@@ -10,11 +10,12 @@ marilyn = Follower.new("Marilyn Manson", 50, "I'm GOD")
 
 witches = Cult.new("Witches", "Salem", 1776, "Fly my monkeys")
 mansons = Cult.new("Mansons", "Los Angeles", 1990, "Cut yourself")
+hippies = Cult.new("Hippies", "Los Angeles", 1970, "Peace & Love")
 
 witches.recruit_follower(bob)
 witches.recruit_follower(chris)
 mansons.recruit_follower(marilyn)
-mansons.recruit_follower(bob)
+
 
 BloodOath.all
 # Insert code here to run before hitting the binding.pry

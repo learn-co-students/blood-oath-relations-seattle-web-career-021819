@@ -39,4 +39,9 @@ class Follower
     arr.uniq
   end
 
+# REVISIT
+# def my_cults_slogans
+
+#  def self.most_active
+
 end

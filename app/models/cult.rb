@@ -57,5 +57,60 @@ class Cult
     end
     arr.uniq
   end
-  
+
+  def average_age
+    x = self.members.map do |bo|
+      bo.follower.age
+    end
+    x.inject{ |sum, el| sum + el }.to_f / x.size
+  end
+
+# REVISIT - Print out motto on
+# separate lines?
+  def my_followers_mottos
+    x = self.members.map do |bo|
+      bo.follower.life_motto
+    end
+    x.each do |motto|
+      puts motto
+    end
+    return nil
+  end
+
+  def self.least_popular
+    min = 100
+    loser = nil
+    Cult.all.each do |cult|
+      if cult.cult_population < min
+        min = cult.cult_population
+        loser = cult.name
+      end
+    end
+    loser
+  end
+
+  def self.common_location
+    hash = {}
+    Cult.all.each do |cult|
+      if hash[cult.location]
+        hash[cult.location] += 1
+      else
+        hash[cult.location] = 1
+      end
+    end
+    hash
+  end
+
+  def self.most_common_location
+    most = 0
+    common_loc = nil
+    self.common_location.each do |k,v|
+      if v > most
+        common_loc = k
+        most = v
+      end
+    end
+    common_loc
+  end
+
 end
