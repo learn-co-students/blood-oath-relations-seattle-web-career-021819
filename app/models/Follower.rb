@@ -68,12 +68,12 @@ class Follower
       tally[follower] = follower.cults.count
     end
 
-    list = tally.sort_by {|key, value| value}
-    10.times do |index|
-      top_ten << list[list.count-1-index][0]
+    max_list = tally.max_by(10) {|k, v| v}
+    
+    max_list.map do |follower|
+      follower[0].name
     end
 
-    return top_ten
   end
 
 end
