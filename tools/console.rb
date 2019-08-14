@@ -1,11 +1,24 @@
 require_relative '../config/environment.rb'
+require 'time'
 
 def reload
   load 'config/environment.rb'
 end
-# Insert code here to run before hitting the binding.pry
-# This is a convenient place to define variables and/or set up new object instances,
-# so they will be available to test and play around with in your console
+
+# tester=Cult.new(1,2,3,4)
+# person=Follower.new("a","b","c")
+
+
+# tester2=Cult.new(10,11,12,13)
+# person.join_cult(tester2)
+# tester2.members
+
+
+
+# Cult.all
+
+
+
 
 binding.pry
 
